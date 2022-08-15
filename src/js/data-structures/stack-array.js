@@ -67,3 +67,43 @@ export default class StackArray {
     return this.items.toString();
   }
 }
+
+// 十进制转二进制的方法封装
+// if和while，在不确定要循环多少次的时候，选择使用while
+
+function dec2bin(decNumber) {
+  const stack = new StackArray();
+
+  while (decNumber > 0) {
+    stack.push(decNumber % 2);
+
+    decNumber = Math.floor(decNumber / 2);
+  }
+  let binaryString = "";
+  while (!stack.isEmpty()) {
+    binaryString += stack.pop();
+  }
+
+  return binaryString;
+}
+
+function decimalToBinary(decNumber) {
+  const remStack = new StackArray();
+  let number = decNumber;
+  let rem;
+  let binaryString = "";
+
+  while (number > 0) {
+    // {1}
+    rem = Math.floor(number % 2); // {2}
+    remStack.push(rem); // {3}
+    number = Math.floor(number / 2); // {4}
+  }
+
+  while (!remStack.isEmpty()) {
+    // {5}
+    binaryString += remStack.pop().toString();
+  }
+
+  return binaryString;
+}
