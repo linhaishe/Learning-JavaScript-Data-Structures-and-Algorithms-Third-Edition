@@ -1,5 +1,5 @@
-import { defaultEquals } from '../util';
-import { Node } from './models/linked-list-models';
+import { defaultEquals } from "../util";
+import { Node } from "./models/linked-list-models";
 
 export default class LinkedList {
   constructor(equalsFn = defaultEquals) {
@@ -7,6 +7,7 @@ export default class LinkedList {
     this.count = 0;
     this.head = undefined;
   }
+  // append
   push(element) {
     const node = new Node(element);
     let current;
@@ -22,6 +23,7 @@ export default class LinkedList {
     }
     this.count++;
   }
+
   getElementAt(index) {
     if (index >= 0 && index <= this.count) {
       let node = this.head;
@@ -32,6 +34,7 @@ export default class LinkedList {
     }
     return undefined;
   }
+
   insert(element, index) {
     if (index >= 0 && index <= this.count) {
       const node = new Node(element);
@@ -49,6 +52,7 @@ export default class LinkedList {
     }
     return false;
   }
+
   removeAt(index) {
     if (index >= 0 && index < this.count) {
       let current = this.head;
@@ -64,10 +68,12 @@ export default class LinkedList {
     }
     return undefined;
   }
+
   remove(element) {
     const index = this.indexOf(element);
     return this.removeAt(index);
   }
+
   indexOf(element) {
     let current = this.head;
     for (let i = 0; i < this.size() && current != null; i++) {
@@ -78,22 +84,27 @@ export default class LinkedList {
     }
     return -1;
   }
+
   isEmpty() {
     return this.size() === 0;
   }
+
   size() {
     return this.count;
   }
+
   getHead() {
     return this.head;
   }
+
   clear() {
     this.head = undefined;
     this.count = 0;
   }
+
   toString() {
     if (this.head == null) {
-      return '';
+      return "";
     }
     let objString = `${this.head.element}`;
     let current = this.head.next;
@@ -101,6 +112,7 @@ export default class LinkedList {
       objString = `${objString},${current.element}`;
       current = current.next;
     }
+
     return objString;
   }
 }
