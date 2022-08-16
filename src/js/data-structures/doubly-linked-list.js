@@ -1,12 +1,13 @@
-import { defaultEquals } from '../util';
-import LinkedList from './linked-list';
-import { DoublyNode } from './models/linked-list-models';
+import { defaultEquals } from "../util";
+import LinkedList from "./linked-list";
+import { DoublyNode, Node } from "./models/linked-list-models";
 
 export default class DoublyLinkedList extends LinkedList {
   constructor(equalsFn = defaultEquals) {
     super(equalsFn);
     this.tail = undefined;
   }
+
   push(element) {
     const node = new DoublyNode(element);
     if (this.head == null) {
@@ -20,12 +21,14 @@ export default class DoublyLinkedList extends LinkedList {
     }
     this.count++;
   }
+
   insert(element, index) {
     if (index >= 0 && index <= this.count) {
       const node = new DoublyNode(element);
       let current = this.head;
       if (index === 0) {
-        if (this.head == null) { // NEW
+        if (this.head == null) {
+          // NEW
           this.head = node;
           this.tail = node; // NEW
         } else {
@@ -33,7 +36,8 @@ export default class DoublyLinkedList extends LinkedList {
           this.head.prev = node; // NEW
           this.head = node;
         }
-      } else if (index === this.count) { // last item NEW
+      } else if (index === this.count) {
+        // last item NEW
         current = this.tail;
         current.next = node;
         node.prev = current;
@@ -51,6 +55,7 @@ export default class DoublyLinkedList extends LinkedList {
     }
     return false;
   }
+
   removeAt(index) {
     if (index >= 0 && index < this.count) {
       let current = this.head;
@@ -80,6 +85,7 @@ export default class DoublyLinkedList extends LinkedList {
     }
     return undefined;
   }
+
   indexOf(element) {
     let current = this.head;
     let index = 0;
@@ -92,19 +98,23 @@ export default class DoublyLinkedList extends LinkedList {
     }
     return -1;
   }
+
   getHead() {
     return this.head;
   }
+
   getTail() {
     return this.tail;
   }
+
   clear() {
     super.clear();
     this.tail = undefined;
   }
+
   toString() {
     if (this.head == null) {
-      return '';
+      return "";
     }
     let objString = `${this.head.element}`;
     let current = this.head.next;
@@ -114,9 +124,10 @@ export default class DoublyLinkedList extends LinkedList {
     }
     return objString;
   }
+
   inverseToString() {
     if (this.tail == null) {
-      return '';
+      return "";
     }
     let objString = `${this.tail.element}`;
     let previous = this.tail.prev;
